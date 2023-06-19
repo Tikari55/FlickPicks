@@ -23,6 +23,18 @@
 <p>Description: {{ $movie->Description }}</p>
 
 <h2>Reviews</h2>
+@if (Auth::check())
+    <h2>Add Your Review</h2>
+    <form action="{{ route('reviews.store', $movie->id) }}" method="POST">
+    @csrf
+        <input type="hidden" name="movie_id" value="{{ $movie->id }}">
+        <label for="Rating">Rating:</label>
+        <input type="number" name="Rating" min="1" max="10" required>
+        <label for="Comment">Comment:</label>
+        <textarea name="Comment" rows="4" cols="50" required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+@endif
 
 @if ($movie->reviews->isEmpty())
     <p>No reviews found.</p>
@@ -30,7 +42,7 @@
     <ul>
         @foreach ($movie->reviews as $review)
             <li>
-                <h3>{{ $review->Rating }}</h3>
+                <h3>{{ $review->Rating }}/10</h3>
                 <p>{{ $review->Comment }}</p>
                 <p>By: {{ $review->users->name }}</p>
             </li>

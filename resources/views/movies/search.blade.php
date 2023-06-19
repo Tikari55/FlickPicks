@@ -4,6 +4,19 @@
     <title>Search movies</title>
 </head>
 <body>
+<div style="position: absolute; top: 10px; right: 10px;">
+    @auth
+        <a href="{{ route('profile') }}">Profile</a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @else
+        <a href="{{ route('register') }}">Register</a>
+        <a href="{{ route('login') }}">Login</a>
+    @endauth
+</div>
+
 <h1>Search movies</h1>
 
 <div>
