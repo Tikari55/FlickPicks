@@ -34,10 +34,11 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Movies $movie)
     {
-        //
+        return view('movies.show', compact('movie'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

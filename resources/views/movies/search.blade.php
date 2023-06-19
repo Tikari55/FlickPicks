@@ -22,14 +22,19 @@
         @foreach ($movies as $movie)
             <li>
                 <div>
-                    <img src="{{ $movie->Poster }}" alt="{{ $movie->Title }}" style="width: 100px;">
+                    <a href="{{ route('movies.show', $movie->id) }}">
+                        <img src="{{ $movie->Poster }}" alt="{{ $movie->Title }}" style="width: 100px;">
+                    </a>
                 </div>
                 <div>
-                    <h3>{{ $movie->Title }}</h3>
+                    <h3>
+                        <a href="{{ route('movies.show', $movie->id) }}">{{ $movie->Title }}</a>
+                    </h3>
                 </div>
             </li>
-    @endforeach
-
+        @endforeach
+    </ul>
 @endif
+
 </body>
 </html>
