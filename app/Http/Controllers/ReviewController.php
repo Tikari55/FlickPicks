@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 class ReviewController extends Controller
 {
     public function store(Request $request, Movies $movie)
@@ -57,22 +58,13 @@ class ReviewController extends Controller
 
     public function destroy(Review $review)
     {
-        $user = User::find($review->user_id);
-
-        // Check if the authenticated user is the owner of the review or an admin
-        if ($user->id === $review->user_id || $user->hasRole('Admin')) {
-            $review->delete();
-
-            // Check if the user is an admin
-            if ($user->hasRole('Admin')) {
-                return redirect()->route('admin.view')->with('success', 'Review deleted successfully!');
-            }
-
-            // If the user is a regular user, redirect to their profile
-            return redirect()->route('profile')->with('success', 'Review deleted successfully!');
+        // Check if the authenticated user owns the review
+        if ($review->users_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
         }
 
-        // If the user is not the owner of the review and not an admin, redirect back with an error message
-        return redirect()->back()->with('error', 'You are not authorized to delete this review.');
+        $review->delete();
+
+        return redirect()->route('profile')->with('success', 'Review deleted successfully!');
     }
 }
