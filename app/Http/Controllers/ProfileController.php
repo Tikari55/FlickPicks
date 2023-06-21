@@ -34,6 +34,4 @@ class ProfileController extends Controller
 
         return view('admin.view', compact('reviews', 'users'));
     }
-
-
 }

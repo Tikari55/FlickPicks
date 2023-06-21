@@ -40,3 +40,5 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
 Route::get('/admin-view', [ProfileController::class, 'adminView'])
     ->name('admin.view')
     ->middleware(['auth']);
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
+

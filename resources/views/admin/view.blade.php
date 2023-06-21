@@ -76,6 +76,12 @@
                 <p>Rating: {{ $review->Rating }}/10</p>
                 <p>Comment: {{ $review->Comment }}</p>
                 <p>By: {{ $review->users->name }}</p>
+                <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
+                <a href="{{ route('reviews.edit', $review->id) }}">Edit</a>
             </li>
         @endforeach
     </ul>
@@ -87,6 +93,11 @@
                 <p>User ID: {{ $user->id }}</p>
                 <p>Name: {{ $user->name }}</p>
                 <p>Email: {{ $user->email }}</p>
+                <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Ban User</button>
+                </form>
             </li>
         @endforeach
     </ul>

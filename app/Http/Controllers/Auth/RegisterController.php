@@ -8,6 +8,7 @@ use App\Models\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -28,6 +29,9 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+        Log::channel('audit')->info('New user has registered', [
+            'user_id' => $user->id,
         ]);
 
         // Assign "RegisteredUser" role to the user

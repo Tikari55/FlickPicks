@@ -51,19 +51,12 @@ class User extends Authenticatable
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'users_id');
     }
 
-    public function hasRole($role)
+    public function isAdmin()
     {
-        if (is_string($role)) {
-            return $this->roles->contains('RoleName', $role);
-        }
-
-        if ($role instanceof Roles) {
-            return $this->roles->contains('id', $role->id);
-        }
-
-        return false;
+        return $this->roles()->where('RoleName', 'Admin')->exists();
     }
+
 }

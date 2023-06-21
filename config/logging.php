@@ -128,7 +128,7 @@ return [
         ],
 
         'audit' => [
-            'driver' => 'daily',
+            'driver' => 'single',
             'path' => storage_path('logs/audit.log'),
             'level' => 'info',
         ],
