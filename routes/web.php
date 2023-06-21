@@ -37,6 +37,6 @@ Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('revi
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->middleware('auth');
 
 // Admin
-Route::get('/admin-view', [ProfileController::class, 'adminView'])->name('admin.view')->middleware('auth');
-Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->middleware('auth');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
+Route::get('/admin-view', [ProfileController::class, 'adminView'])
+    ->name('admin.view')
+    ->middleware(['auth']);

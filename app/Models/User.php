@@ -53,4 +53,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    public function hasRole($role)
+    {
+        if (is_string($role)) {
+            return $this->roles->contains('RoleName', $role);
+        }
+
+        if ($role instanceof Roles) {
+            return $this->roles->contains('id', $role->id);
+        }
+
+        return false;
+    }
 }
