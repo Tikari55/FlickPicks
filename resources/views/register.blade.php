@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <title>User Registration</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
     body {
@@ -50,10 +49,10 @@
     }
 </style>
 </head>
-<body class="bg-light">
+<body>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div>
+        <div>
             <div class="card">
                 <div class="card-header">User Registration</div>
                 <div class="card-body">
@@ -93,7 +92,7 @@
                     </form>
                 </div>
             </div>
-            <div class="mt-3 text-center">
+            <div class=>
                 <p class="white-text">Already have an account? <a href="{{ route('login') }}">Login</a></p>
             </div>
         </div>
